@@ -27,16 +27,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider appearance={{
+      variables:{colorPrimary: '#624cf5'}
+    }}>
       <html lang="en">
-        <body className={cn("font-IBMPlex antialiased", IBMPlex.variable)}>
+        <body className={cn("font-IBMPlex antialiased relative", IBMPlex.variable)}>
+          
+         
+          {children}
+          <div className="absolute bottom-2 left-20">
           <SignedOut>
+            <div className="sidebar-nav_element p-2 px-4 border-2 border-purple-500">
             <SignInButton />
+            </div>
           </SignedOut>
           <SignedIn>
+            <div className="sidebar-nav_element p-1  border-purple-500 mr-2 gap-2">
             <UserButton />
+            LOG OUT
+            </div>
+           
           </SignedIn>
-          {children}
+          </div>
         </body>
       </html>
     </ClerkProvider>
